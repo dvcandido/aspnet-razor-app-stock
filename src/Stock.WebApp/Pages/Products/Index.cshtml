@@ -1,0 +1,70 @@
+@page
+@model Pages.Products.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container p-3">
+
+    <div>
+        <div class="col border-bottom" style="width:80%">
+            <h2 class="display-6">My Product List</h2>
+        </div>
+    </div>
+
+    <div class="container pt-4">
+        <div class="row" style="width:80%">
+            <div class="col">
+                @if (TempData["success"] != null)
+                {
+                    <h4>@TempData["success"]</h4>
+                }
+                else
+                {
+                    <h4>@TempData["failure"]</h4>
+                }
+            </div>
+            <div class="col text-end pb-4">
+                <a asp-page="Add" class="btn btn-primary mx-2 text-end" title="">
+                    <i class="bi bi-plus-square"></i> &nbsp;Add to list
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:80%">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Manage</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var obj in Model.ProductModels)
+            {
+                <tr>
+                    <td width="40%">@obj.Name</td>
+                    <td width="20%">@obj.Price.ToString("C2")</td>
+                    <td width="10%" class="text-center">@obj.Quantity</td>
+                    <td width="30%" class="text-center">
+                        @* The following div contains information to handle the edit and delete functions. *@
+                        <div class="w-75 btn-group btn-group-sm" role="group" style="text-align:center">
+                            @* Routes to the Edit page and passes the id of the record. *@
+                            <a asp-page="Edit" asp-route-id="@obj.Id" class="btn btn-primary  mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            @* Routes to the Delete page and passes the id of the record. *@
+                            <a asp-page="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

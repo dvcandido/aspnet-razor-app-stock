@@ -1,0 +1,56 @@
+@page
+@model Pages.StockInputs.IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container p-3">
+
+    <div>
+        <div class="col border-bottom" style="width:80%">
+            <h2 class="display-6">Stock Inputs List</h2>
+        </div>
+    </div>
+
+    <div class="container pt-4">
+        <div class="row" style="width:80%">
+            <div class="col">
+                @if (TempData["success"] != null)
+                {
+                    <h4>@TempData["success"]</h4>
+                }
+                else
+                {
+                    <h4>@TempData["failure"]</h4>
+                }
+            </div>
+            <div class="col text-end pb-4">
+                <a asp-page="Add" class="btn btn-primary mx-2 text-end" title="">
+                    <i class="bi bi-plus-square"></i> &nbsp;Add to list
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped" style="width:80%">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th class="text-center">Quantity</th>
+                <th class="text-center">Date</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var obj in Model.StockInputModels)
+            {
+                <tr>
+                    <td width="50%">@obj.Product.Name</td>
+                    <td width="20%" class="text-center">@obj.Quantity</td>
+                    <td width="30%" class="text-center">@obj.Date</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

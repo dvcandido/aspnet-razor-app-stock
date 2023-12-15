@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{04BD010B-EF9F-4794-B564-220F2BC9A4AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stock.WebApp", "src\Stock.WebApp\Stock.WebApp.csproj", "{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CE6B4DA1-4FF7-42F0-9B7A-7F97857A803A} = {04BD010B-EF9F-4794-B564-220F2BC9A4AD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D8F4FC0-C601-49A6-B2EA-2B528E0FD191}
+	EndGlobalSection
+EndGlobal
