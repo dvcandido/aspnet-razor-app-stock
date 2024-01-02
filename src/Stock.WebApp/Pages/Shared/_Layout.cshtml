@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,10 +9,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Stock.WebApp.styles.css" asp-append-version="true" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">Stock .NET</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,10 +43,15 @@
 
     <footer class="footer mt-auto py-3 bg-light">
         <div class="container">
-            <span class="text-muted">Contato: seu-email@dominio.com | © @DateTime.Now.Year - Stock .NET</span>
+            <span class="text-muted">Contato: douglasvaz@hotmail.com | © @DateTime.Now.Year - Stock .NET</span>
+            <div>
+                <a href="https://www.linkedin.com/in/dvcandido/" target="_blank"><img src="/img/linkedin.svg" alt="LinkedIn" style="width: 40px; height: 40px; margin-left: 5px;"></a>
+                <a href="https://github.com/dvcandido" target="_blank"><img src="/img/github.svg" alt="GitHub" style="width: 40px; height: 40px; margin-left: 5px;"></a>
+            </div>
         </div>
     </footer>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>
