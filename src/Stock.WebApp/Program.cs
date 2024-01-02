@@ -1,3 +1,5 @@
+using Stock.WebApp.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +8,10 @@ builder.Services.AddHttpClient("StockApi", httpClient =>
 {
     httpClient.BaseAddress = new Uri("http://localhost:5050/");
 });
+
+builder.Services.AddScoped<ProductsService>();
+builder.Services.AddScoped<StockInputsService>();
+builder.Services.AddScoped<StockOutputsService>();
 
 var app = builder.Build();
 
