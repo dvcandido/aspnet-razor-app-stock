@@ -3,27 +3,27 @@
 @{
     ViewData["Title"] = "Add page";
 }
-
 <form method="post">
-    <input hidden asp-for="StockOutput.Id" />
     <div class="border p-3 mt-4" style="width:50%">
         <div class="row pb-2">
- 			<h2 class="text-primary pl-3">Add Stock Output</h2>
- 			<hr />
- 		</div>
+            <h2 class="text-primary pl-3">Add Stock Output</h2>
+            <hr />
+        </div>
         <div class="form-group mb-3">
             <label asp-for="StockOutput.ProductId" class="control-label"></label>
-            <input asp-for="StockOutput.ProductId" class="form-control" />
+            <select asp-for="StockOutput.ProductId" asp-items="@(Model.Products)" class="form-control">
+                <option value="">Selecione um produto</option>
+            </select>
             <span asp-validation-for="StockOutput.ProductId" class="text-danger"></span>
         </div>
         <div class="form-group mb-3">
             <label asp-for="StockOutput.Date" class="control-label"></label>
-            <input asp-for="StockOutput.Date" class="form-control" />
+            <input asp-for="StockOutput.Date" type="date" class="form-control" />
             <span asp-validation-for="StockOutput.Date" class="text-danger"></span>
         </div>
         <div class="form-group mb-3">
-            <label asp-for="StockOutput.Quantity" class="control-label"></label>          
-            <input asp-for="StockOutput.Quantity" class="form-control" />
+            <label asp-for="StockOutput.Quantity" class="control-label"></label>
+            <input asp-for="StockOutput.Quantity" type="number" class="form-control" />
             <span asp-validation-for="StockOutput.Quantity" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
