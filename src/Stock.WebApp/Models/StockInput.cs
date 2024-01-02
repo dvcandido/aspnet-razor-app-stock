@@ -12,7 +12,7 @@ public record StockInput
     [JsonPropertyName("productId")]
     public int ProductId { get; set; }
     
-    [Required]
+    [Required, Range(1, int.MaxValue)]
     [JsonPropertyName("quantity")]
     public int Quantity { get; set; }
     

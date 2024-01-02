@@ -12,7 +12,7 @@ public record Product
     [JsonPropertyName("name")]
     public string? Name { get; set; }
     
-    [Required]
+    [Required, Range(0.01, double.MaxValue)]
     [JsonPropertyName("price")]
     public decimal Price { get; set; }
 
