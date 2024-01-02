@@ -3,9 +3,7 @@
 @{
     ViewData["Title"] = "Add page";
 }
-
 <form method="post">
-    <input hidden asp-for="StockInput.Id" />
     <div class="border p-3 mt-4" style="width:50%">
         <div class="row pb-2">
  			<h2 class="text-primary pl-3">Add Stock Input</h2>
@@ -13,17 +11,19 @@
  		</div>
         <div class="form-group mb-3">
             <label asp-for="StockInput.ProductId" class="control-label"></label>
-            <input asp-for="StockInput.ProductId" class="form-control" />
+            <select asp-for="StockInput.ProductId" asp-items="@(Model.Products)" class="form-control">
+                <option value="">Selecione um produto</option>
+            </select>
             <span asp-validation-for="StockInput.ProductId" class="text-danger"></span>
         </div>
         <div class="form-group mb-3">
             <label asp-for="StockInput.Date" class="control-label"></label>
-            <input asp-for="StockInput.Date" class="form-control" />
+            <input asp-for="StockInput.Date" type="date" class="form-control" />
             <span asp-validation-for="StockInput.Date" class="text-danger"></span>
         </div>
         <div class="form-group mb-3">
             <label asp-for="StockInput.Quantity" class="control-label"></label>          
-            <input asp-for="StockInput.Quantity" class="form-control" />
+            <input asp-for="StockInput.Quantity" type="number" class="form-control" />
             <span asp-validation-for="StockInput.Quantity" class="text-danger"></span>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>

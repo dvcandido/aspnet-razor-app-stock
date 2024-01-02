@@ -1,25 +1,35 @@
-using System.Text;
-using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Stock.WebApp.Models;
+using Stock.WebApp.Services;
 
 namespace Stock.WebApp.Pages.StockInputs;
 
-public class AddModel(IHttpClientFactory httpClientFactory) : PageModel
+public class AddModel(StockInputsService stockInputsService, ProductsService productsService) : PageModel
 {
     [BindProperty]
     public StockInput StockInput { get; set; }
 
+    public SelectList Products { get; set; }
+
+    public async Task OnGet()
+    {
+        Products = new SelectList(await productsService.GetAllAsync(), nameof(Product.Id), nameof(Product.Name));
+    }
+
     public async Task<IActionResult> OnPost()
     {
-        var jsonContent = new StringContent(JsonSerializer.Serialize(StockInput), Encoding.UTF8, "application/json");
+        if (!ModelState.IsValid)
+        {
+            Products = new SelectList(await productsService.GetAllAsync(), nameof(Product.Id), nameof(Product.Name));
 
-        var httpClient = httpClientFactory.CreateClient("StockApi");
+            return Page();
+        }
 
-        using HttpResponseMessage response = await httpClient.PostAsync("stock-inputs", jsonContent);
+        var IsSuccessStatusCode = await stockInputsService.AddAsync(StockInput);
 
-        if (response.IsSuccessStatusCode)
+        if (IsSuccessStatusCode)
         {
             TempData["success"] = "Data was added successfully.";
             return Redirect("Index");
