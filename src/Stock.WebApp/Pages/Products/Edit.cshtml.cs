@@ -3,36 +3,28 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stock.WebApp.Models;
+using Stock.WebApp.Services;
 
 namespace Stock.WebApp.Pages.Products;
 
-public class EditModel(IHttpClientFactory httpClientFactory) : PageModel
+public class EditModel(ProductsService service) : PageModel
 {
     [BindProperty]
     public Product Product { get; set; }
 
     public async Task OnGet(int id)
     {
-        var httpClient = httpClientFactory.CreateClient("StockApi");
-
-        using HttpResponseMessage response = await httpClient.GetAsync($"products/{id}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            using var contentStream = await response.Content.ReadAsStreamAsync();
-            Product = await JsonSerializer.DeserializeAsync<Product>(contentStream);
-        }
+       Product = await service.GetAsync(id);
     }
 
     public async Task<IActionResult> OnPost()
     {
-        var jsonContent = new StringContent(JsonSerializer.Serialize(Product), Encoding.UTF8, "application/json");
+        if (!ModelState.IsValid)
+            return Page();
 
-        var httpClient = httpClientFactory.CreateClient("StockApi");
+        var IsSuccessStatusCode = await service.UpdateAsync(Product);
 
-        using HttpResponseMessage response = await httpClient.PutAsync($"products/{Product.Id}", jsonContent);
-
-        if (response.IsSuccessStatusCode)
+        if (IsSuccessStatusCode)
         {
             TempData["success"] = "Data was updated successfully.";
             return Redirect("Index");
